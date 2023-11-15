@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+  - let icecreamid = toShow._id
+  - let flavour = toShow.flavour
+  - let color = toShow.color
+  - let price = toShow.price
+  div
+    div.row
+      div(class='icecreamAttr mr-3') Icecream ID is:
+      div #{icecreamid}
+    div.row
+      div(class='icecreamAttr mr-3') Icecream flavour is:
+      div #{flavour}
+    div.row
+      div(class='icecreamAttr mr-3') Icecream color is:
+      div #{color}
+    div.row
+      div(class='icecreamAttr mr-3') Icecream price is:
+      div #{price}
+   
