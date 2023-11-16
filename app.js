@@ -16,26 +16,26 @@ db.on('error', console.error.bind(console, 'MongoDB connectionerror:'));
 db.once("open", function(){
 console.log("Connection to DB succeeded")});
 // We can seed the collection if needed onserver start
-async function recreateDB(){
-// Delete everything
-await icecream.deleteMany();
-let instance1 = new  icecream({ flavor:"Cheesecake",type:'Classic',rating:4.5});
-instance1.save().then(doc=>{
-console.log("First object saved")})
-let instance2 = new icecream({ flavor:"Raspberry",type:'Premium',rating:4.8});
-instance2.save().then(doc=>{
-console.log("Second object saved")})
-let instance3 = new icecream({ flavor:"Lychee",
-type:'FruitFlavored',rating:4.2});
-instance3.save().then(doc=>{
-console.log("Thrid object saved")}
+// async function recreateDB(){
+// // Delete everything
+// await icecream.deleteMany();
+// let instance1 = new  icecream({ flavor:"Cheesecake",type:'Classic',rating:4.5});
+// instance1.save().then(doc=>{
+// console.log("First object saved")})
+// let instance2 = new icecream({ flavor:"Raspberry",type:'Premium',rating:4.8});
+// instance2.save().then(doc=>{
+// console.log("Second object saved")})
+// let instance3 = new icecream({ flavor:"Lychee",
+// type:'FruitFlavored',rating:4.2});
+// instance3.save().then(doc=>{
+// console.log("Thrid object saved")}
 
-).catch(err=>{
-console.error(err)
-});
-}
-let reseed = true;
-if (reseed) {recreateDB();}
+// ).catch(err=>{
+// console.error(err)
+// });
+// }
+// let reseed = true;
+// if (reseed) {recreateDB();}
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
