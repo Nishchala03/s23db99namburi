@@ -1,16 +1,40 @@
-extends layout
+//- extends layout
  
+//- block content
+//-   h1= title
+//-   - const results = [{ flavor: "Cheesecake", type: "Classic", rating: 4.5 },{ flavor: "Raspberry", type: "Premium", rating: 4.8 },{ flavor: "Lychee", type: "FruitFlavored", rating: 4.2 }]
+ 
+//-   div(class="container-fluid")
+//-     div(class="row")
+//-       each icecream, index in results
+ 
+//-         div(class="col-sm-2", onclick=`buy(${index})`) #{icecream.flavor}, #{icecream.type}, #{icecream.rating}
+       
+//-   script.
+//-     function buy(a) {
+//-       alert(`You purchased Item ${a+1}`)
+//-     }
+extends layout
+
 block content
   h1= title
-  - const results = [{ flavor: "Cheesecake", type: "Classic", rating: 4.5 },{ flavor: "Raspberry", type: "Premium", rating: 4.8 },{ flavor: "Lychee", type: "FruitFlavored", rating: 4.2 }]
- 
-  div(class="container-fluid")
+  - const results = [
+    { flavor: "Cheesecake", type: "Classic", rating: 4.5 },
+    { flavor: "Raspberry", type: "Premium", rating: 4.8 },
+    { flavor: "Lychee", type: "FruitFlavored", rating: 4.2 }
+  ]
+
+  div(class="container mt-4") // Add margin to the top
     div(class="row")
       each icecream, index in results
- 
-        div(class="col-sm-2", onclick=`buy(${index})`) #{icecream.flavor}, #{icecream.type}, #{icecream.rating}
-       
+        div(class="col-sm-4 mb-4") // Add margin to the bottom
+          .icecream-card(onclick=`buy(${index})`)
+            h3 #{icecream.flavor}
+            p Type: #{icecream.type}, Rating: #{icecream.rating}
+            button.btn.btn-buy(onclick=`buy(${index})`) Buy
+
   script.
     function buy(a) {
-      alert(`You purchased Item ${a+1}`)
+      alert(`You purchased Item ${a + 1}`);
     }
+
