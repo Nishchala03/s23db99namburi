@@ -1,31 +1,39 @@
 extends layout
 block content
   h1= title
-  form(id='icecreamForm', action="/resource/icecream", method="POST")
+  - let icecreamid = toShow._id
+  - let flavor = toShow.flavor
+  - let type = toShow.type
+  - let rating = toShow.rating
+  div.row(class='mb-2')
+    div.mr-1 ID is
+    div #{icecreamid}
+  - let actionid = "/resource/icecream/" + icecreamid
+  form(id='icecreamForm', action=actionid, method="PUT")
     div.form-group
       label.icecreamAttr(for='flavor') icecream flavor
-      input#flavor(type='text', name='flavor')
+      input#flavor(type='text', name='flavor', value=flavor)
     div.form-group
       label.icecreamAttr(for='type') icecream type
-      input#type(type='text', name='type')
+      input#type(type='text', name='type', value=type)
     div.form-group
       label.icecreamAttr(for='rating') icecream rating
-      input#rating(type='number', name='rating')
+      input#rating(type='number', name='rating', value=rating)
     input(type="submit")
   script.
     document.forms['icecreamForm'].addEventListener('submit', (event) => {
       event.preventDefault();
       // TODO do something here to show the user that the form is being submitted
       fetch(event.target.action, {
-        method: 'POST',
+        method: 'PUT',
         body: new URLSearchParams(new FormData(event.target)) // event.target is the form
       }).then((resp) => {
         return resp.json(); // or resp.text() or whatever the server sends
       }).then((body) => {
-        alert("Save succeeded")
+        alert("Update succeeded")
         // TODO handle body
       }).catch((error) => {
         // TODO handle error
-        alert("Save failed " + error)
+        alert("Update failed " + error)
       });
     });
