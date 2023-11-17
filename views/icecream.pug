@@ -27,14 +27,15 @@ block content
   div(class="container mt-4") // Add margin to the top
     div(class="row")
       each icecream, index in results
+        - let destination = `dispatch(\"/icecream/update?id=${icecream._id}\")`
         div(class="col-sm-4 mb-4") // Add margin to the bottom
           .icecream-card(onclick=`buy(${index})`)
             h3 #{icecream.flavor}
             p Type: #{icecream.type}, Rating: #{icecream.rating}
             button.btn.btn-buy(onclick=`buy(${index})`) Buy
 
-  script.
-    function buy(a) {
-      alert(`You purchased Item ${a + 1}`);
-    }
+ script.
+    function dispatch(path){
+        window.location.href=path
+      }
 
