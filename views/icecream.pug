@@ -1,41 +1,22 @@
-//- extends layout
- 
-//- block content
-//-   h1= title
-//-   - const results = [{ flavor: "Cheesecake", type: "Classic", rating: 4.5 },{ flavor: "Raspberry", type: "Premium", rating: 4.8 },{ flavor: "Lychee", type: "FruitFlavored", rating: 4.2 }]
- 
-//-   div(class="container-fluid")
-//-     div(class="row")
-//-       each icecream, index in results
- 
-//-         div(class="col-sm-2", onclick=`buy(${index})`) #{icecream.flavor}, #{icecream.type}, #{icecream.rating}
-       
-//-   script.
-//-     function buy(a) {
-//-       alert(`You purchased Item ${a+1}`)
-//-     }
 extends layout
 
 block content
   h1= title
-  - const results = [
-    { flavor: "Cheesecake", type: "Classic", rating: 4.5 },
-    { flavor: "Raspberry", type: "Premium", rating: 4.8 },
-    { flavor: "Lychee", type: "FruitFlavored", rating: 4.2 }
-  ]
+  - const results1 = []
 
-  div(class="container mt-4") // Add margin to the top
-    div(class="row")
+  div(class="container mt-4")
+    div(class="row m-1")
       each icecream, index in results
-        - let destination = `dispatch(\"/icecream/update?id=${icecream._id}\")`
-        div(class="col-sm-4 mb-4") // Add margin to the bottom
-          .icecream-card(onclick=`buy(${index})`)
-            h3 #{icecream.flavor}
-            p Type: #{icecream.type}, Rating: #{icecream.rating}
-            button.btn.btn-buy(onclick=`buy(${index})`) Buy
+        - let destination = `dispatch("/icecream/update?id=${icecream._id}")`
+        div(class="col-sm-4 mb-3 icecream-card")
+          div(class="card")
+            div(class="card-body")
+              h3(class="card-text") #{icecream.flavor}
+              p(class="card-text") Type: #{icecream.type}
+              p(class="card-text") Rating: #{icecream.rating}
+              button.btn(class="btn-primary ml-1", onclick=destination) Update
 
- script.
+  script.
     function dispatch(path){
-        window.location.href=path
-      }
-
+      window.location.href = path;
+    }
