@@ -1,18 +1,30 @@
-extends layout
+//- extends layout
  
-block content
-  h1= title
-  p Assignement 10
-  button(type="button" ,class="btn btn-info" onclick="goFaster()") Press Me
-  br
-  div#faster Increase the speed
-  script.
-    let mph = 20;
-    let change = 1;
-    function goFaster() {
-      mph += change;
-      change += 1;
-      document.getElementById('faster').textContent = `MPH ${mph} with change ${change}`;
-    }
+//- block content
+//-   h1= title
+//-   p Assignement 10
+//-   button(type="button" ,class="btn btn-info" onclick="goFaster()") Press Me
+//-   br
+//-   div#faster Increase the speed
+//-   script.
+//-     let mph = 20;
+//-     let change = 1;
+//-     function goFaster() {
+//-       mph += change;
+//-       change += 1;
+//-       document.getElementById('faster').textContent = `MPH ${mph} with change ${change}`;
+//-     }
     
-    a(href='http://localhost:3000/icecream') Click Here to Visit icecream Website
+//-     a(href='http://localhost:3000/icecream') Click Here to Visit icecream Website
+extends layout
+
+block content
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/icecream") Take me to icecream
+    br
+    a(href="/logout") Logout
